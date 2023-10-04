@@ -1,0 +1,40 @@
+#: import wb webbrowser
+
+# Main menu content
+<MainMenu>:
+
+    # Just a test label for menu screen
+    Label:
+        # Text section
+        markup: True
+        text: "This is main menu"
+        
+        # Font section
+        font_name: "Fonts/sans.ttf"
+        font_size: "20sp"
+        
+        # Color section
+        color: (0, 214/255, 0, 1)
+
+        # Size and Position
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+    # Footer
+    Label:
+        # Text section
+        markup: True
+        text: "[ref=>> Source Code <<]>> Source Code <<[/ref]"
+        
+        # Font section
+        font_name: "Fonts/font.otf"
+        font_size: "16sp"
+        
+        # Color section
+        color: (58/255, 188/255, 248/255, 1)
+
+        # Size and Position
+        pos_hint: {"center_x":0.5, "center_y": 0.05}
+
+        # Action
+        on_ref_press: 
+            wb.open("https://github.com/kourva/KivyOTPLogin")

@@ -1,0 +1,178 @@
+# Custom input button for OTP
+<OTPinput@Button>:
+    # Text section
+    markup: True 
+    text: ""
+    halign: "center"
+    
+    # Font section
+    font_name: "Fonts/font.otf"
+    font_size: "18sp"
+    
+    # Color section
+    hint_text_color: "#55555555"
+    background_normal: ''
+    cursor_color: "#4889f4"
+    background_color: "#00000000"
+    foreground_color: (58/255, 188/255, 248/255, 1)
+    
+    # Settings
+    width: 0.1
+    padding_y: (self.height - self.line_height) / 2
+    line_spacing: 0
+    
+    # Canvas
+    canvas.before:
+        Color:
+            rgba: (100/255, 100/255, 100/255, 1) if self.text == "" else self.foreground_color
+        Line:
+            width: 1.05
+            rounded_rectangle:
+                (
+                self.x, self.y, self.width, self.height,
+                5, 5, 5, 5,
+                self.height
+                )
+        BoxShadow:
+            pos: self.pos
+            size: self.size
+            offset: 0, -10
+            spread_radius: -230, -230
+            border_radius: 10, 10, 10, 10
+            blur_radius: 200
+    
+    # Action
+    # This will increase he text number of button by 1 when pressing it
+    on_release:
+        self.text = str(int(self.text or -1) + 1) if self.text != "9" else "0"
+
+
+# Custom Button for OTP input (to avoid making repeated code)
+<OTPButton@Button>:
+    # Text section
+    markup: True
+    bold: True
+
+    # Font section
+    font_name: "Fonts/sans.ttf"
+    font_size: "17sp"
+
+    # Background section
+    background_normal: ""
+    background_color: "#00000000"
+
+    # Canvas 
+    canvas.before:
+        Color:
+            rgba: 100/255, 100/255, 100/255, 1
+        Line:
+            width: 1.05
+            rounded_rectangle:
+                (
+                self.x, self.y, self.width, self.height,
+                10, 10, 10, 10,
+                self.height
+                )
+
+
+# Login menu content (must be same as class name)
+<LoginMenu>:
+
+    # Background color for screen
+    # You can use color or image by commenting color section
+    # and using source for image
+    canvas.before:
+        Color:
+            rgba: 0/255, 0/255, 0/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            # source: "path/to/background.png|jpg"
+    
+    # Float layout to cover whole screen
+    FloatLayout:
+
+        # Lock icon
+        Image:
+            source: "Icons/lock.png"
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+            size_hint_x: 0.2
+            size_hint_y: 0.2
+            fit_mode: "contain"
+
+        # Box layout for OTP inputs (6 digit OTP for this code)
+        BoxLayout:
+            # Size and Position
+            size_hint: 0.8, None
+            height: "50dp"
+            pos_hint: {"center_y": 0.5, "center_x": 0.5}
+            
+            # Settings
+            orientation: 'horizontal'
+            cols: 6
+            spacing: 10
+            padding: 3
+
+            # OTP inputs
+            OTPinput:
+                id: otp_1
+            OTPinput:
+                id: otp_2
+            OTPinput:
+                id: otp_3
+            OTPinput:
+                id: otp_4
+            OTPinput:
+                id: otp_5
+            OTPinput:
+                id: otp_6
+
+        # Box layout to store login and clear button
+        BoxLayout:
+            # Size and Position
+            size_hint: 0.8, None
+            height: "50dp"
+            pos_hint: {"center_y": 0.4, "center_x": 0.5}
+            
+            # Settings
+            orientation: 'horizontal'
+            cols: 2
+            spacing: 10
+            padding: 3
+            
+            # Clear button to clear input
+            OTPButton:
+                # Text section
+                text: "Clear"
+                color: 241/255, 56/255, 50/255, 1 
+                
+                # Action
+                on_release:
+                    root.clear_input(otp_1, otp_2, otp_3, otp_4, otp_5, otp_6, status=status)
+
+            # Login button to do login process
+            OTPButton:
+                # Text section
+                text: "Login"
+                color: 56/255, 183/255, 241/255, 1 
+                
+                # Action
+                on_release:
+                    root.login(otp_1, otp_2, otp_3, otp_4, otp_5, otp_6, status=status)
+
+        # Status label for input
+        Label:
+            # Widget ID
+            id: status
+            
+            # Text section
+            text: "Tap on input to change it!"
+            color: (200/255, 200/255, 200/255, 1)
+
+            # Font section
+            font_name: "Fonts/sans.ttf"
+            font_size: "16sp"
+
+            # Size and Position
+            size_hint: 1, 0.1
+            pos_hint: {"center_y": 0.3, "center_x": 0.5}

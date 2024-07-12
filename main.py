@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Description: Kivy OTP login screen
-# Author     : Kourva
-# Source code: https://github.com/kourva/KivyOTPLogin
+# Author     : kozyol
+# Source code: https://github.com/kozyol/KivyOTPLogin
 
 # Importing resources from import file
 from Libraries.imports import *

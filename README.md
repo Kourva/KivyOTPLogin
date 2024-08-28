@@ -7,7 +7,7 @@ A dynamic OTP login application built with Kivy with beautiful animation when va
 + **BUTTON INPUTS**: No need to use keyboard to enter inputs, you can press on input buttons and change its input number
 
 #### **PASSWORD DEFAULTS TO** `12345`
-https://github.com/kozyol/KivyOTPLogin/assets/118578799/c56a130d-43fc-45e4-af81-0384c89c10f3
+https://github.com/Kourva/KivyOTPLogin/assets/118578799/c56a130d-43fc-45e4-af81-0384c89c10f3
 
 
 
@@ -16,7 +16,7 @@ https://github.com/kozyol/KivyOTPLogin/assets/118578799/c56a130d-43fc-45e4-af81-
 # Installation
 + **Clone repository**
 ```bash
-git clone https://github.com/kozyol/KivyOTPLogin
+git clone https://github.com/Kourva/KivyOTPLogin
 ```
 + **Navigate to main directory**
 ```bash
